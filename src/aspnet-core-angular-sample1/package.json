@@ -1,0 +1,25 @@
+{
+  "name": "aspnet-core-angular-sample1",
+  "version": "1.0.0",
+  "description": "ASP.NET Core and Angular2 sample app",
+  "author": "Taras Pyvovarov",
+  "license": "ISC",
+  "repository" :{ 
+    "type" : "git", 
+    "url" : "https://{myurl}.git"
+  },
+  "dependencies": {
+    "@angular/common": "2.4.4",
+    "@angular/compiler": "2.4.4",
+    "@angular/core": "2.4.4",
+    "@angular/platform-browser": "2.4.4",
+    "@angular/platform-browser-dynamic": "2.4.4",
+
+    "systemjs": "0.19.40",
+    "rxjs": "5.0.3",
+    "reflect-metadata": "^0.1.8",
+    "zone.js": "0.7.6"
+  },
+  "devDependencies": {
+  }
+}
