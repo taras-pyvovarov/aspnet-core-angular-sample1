@@ -18,9 +18,10 @@
     "systemjs": "0.19.40",
     "rxjs": "5.0.3",
     "reflect-metadata": "^0.1.8",
-    "zone.js": "0.7.6"
+    "zone.js": "0.7.7"
   },
   "devDependencies": {
+    "source-map-loader": "^0.1.6",
     "ts-loader": "^2.0.1",
     "typescript": "^2.2.1"
   }

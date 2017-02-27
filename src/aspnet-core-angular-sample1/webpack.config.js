@@ -16,9 +16,16 @@ module.exports = {
     module: {
         loaders: [
             {
+                enforce: 'pre',
+                test: /\.js$/,
+                loader: "source-map-loader"
+            },
+            {
                 loader: 'ts-loader',
                 exclude: /node_modules/,
             }
         ]
-    }
+    },
+
+    devtool: 'inline-source-map',
 };
