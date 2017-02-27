@@ -9,7 +9,6 @@ import { AppComponent } from './app1.component';
 //Decorator function. Properties contain metadata about module.
 @NgModule({
     imports: [BrowserModule],
-    //providers:    [ Logger ],
     declarations: [AppComponent],
     exports: [AppComponent],
     bootstrap: [AppComponent]
