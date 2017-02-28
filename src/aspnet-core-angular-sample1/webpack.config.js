@@ -1,11 +1,13 @@
 ﻿"use strict";
 
-module.exports = {
+var path = require('path');
 
-    entry: "./ClientApp1/main.ts",
+var clientBundleConfig = {
+    entry: { 'app1-main-client': './ClientApp1/app1-main-client.ts' },
 
     output: {
-        filename: "./wwwroot/dist/bundle.js"
+        path: path.join(__dirname, './wwwroot/app1'),
+        filename: '[name].js',
     },
 
     resolve: {
@@ -28,4 +30,6 @@ module.exports = {
     },
 
     devtool: 'inline-source-map',
-};
+}
+
+module.exports = [clientBundleConfig];

@@ -1,6 +1,7 @@
 ﻿<div>
     <h3>Angular root:</h3>
-    <component-root>Loading...</component-root>
+    @*<component-root>Loading...</component-root>*@
+    <app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>
 
     @*App should be imported below root decorator declaration*@
     <script src="dist/bundle.js"></script>
