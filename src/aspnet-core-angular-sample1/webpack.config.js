@@ -1,5 +1,7 @@
 ﻿"use strict";
 
+var webpack = require('webpack')
+
 module.exports = {
 
     entry: "./ClientApp1/main.ts",
@@ -26,6 +28,13 @@ module.exports = {
             }
         ]
     },
+
+    plugins: [
+        new webpack.DllReferencePlugin({
+            context: '.',
+            manifest: require('./wwwroot/dist/angular-manifest.json')
+        }),
+    ],
 
     devtool: 'inline-source-map',
 };
