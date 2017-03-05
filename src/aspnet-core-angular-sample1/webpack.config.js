@@ -1,13 +1,15 @@
 ﻿"use strict";
 
 var webpack = require('webpack')
+var path = require('path');
 
 module.exports = {
 
-    entry: "./ClientApp1/main.ts",
+    entry: path.join(__dirname, 'ClientApp1', 'main.ts'),
 
     output: {
-        filename: "./wwwroot/dist/bundle.js"
+        path: path.join(__dirname, 'wwwroot', 'dist'),
+        filename: "bundle.js"
     },
 
     resolve: {
@@ -32,9 +34,11 @@ module.exports = {
     plugins: [
         new webpack.DllReferencePlugin({
             context: '.',
-            manifest: require('./wwwroot/dist/angular-manifest.json')
+            manifest: require(path.join(__dirname, 'wwwroot', 'dist', 'angular-manifest.json'))
         }),
     ],
+
+    //target: 'node',
 
     devtool: 'inline-source-map',
 };
