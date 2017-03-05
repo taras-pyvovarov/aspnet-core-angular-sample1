@@ -1,12 +1,13 @@
 ﻿"use strict";
 
+var webpack = require('webpack');
 var path = require('path');
 
 var clientBundleConfig = {
     entry: { 'app1-main-client': './ClientApp1/app1-main-client.ts' },
 
     output: {
-        path: path.join(__dirname, './wwwroot/app1'),
+        path: path.join(__dirname, 'wwwroot', 'dist'),
         filename: '[name].js',
     },
 
@@ -28,6 +29,13 @@ var clientBundleConfig = {
             }
         ]
     },
+
+    plugins: [
+        new webpack.DllReferencePlugin({
+            context: '.',
+            manifest: require(path.join(__dirname, 'wwwroot', 'dist', 'angular-manifest.json'))
+        }),
+    ],
 
     devtool: 'inline-source-map',
 }
@@ -37,7 +45,7 @@ var serverBundleConfig = {
     entry: { 'main-server': './ClientApp1/app1-main-server.ts' },
     output: {
         //libraryTarget: 'commonjs',
-        path: path.join(__dirname, './ClientApp1/dist'),
+        path: path.join(__dirname, 'ClientApp1', 'dist'),
         filename: '[name].js',
     },
 
@@ -59,6 +67,15 @@ var serverBundleConfig = {
             }
         ]
     },
+
+    //plugins: [
+    //    new webpack.DllReferencePlugin({
+    //        context: '.',
+    //        manifest: require(path.join(__dirname, 'wwwroot', 'dist', 'angular-manifest.json'))
+    //    }),
+    //],
+
+    //target: 'node',
 
     devtool: 'inline-source-map',
 }
