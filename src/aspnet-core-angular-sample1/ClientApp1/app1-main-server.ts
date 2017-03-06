@@ -1,5 +1,6 @@
 ﻿import 'angular2-universal-polyfills';
 import 'zone.js';
+import { createServerRenderer } from 'aspnet-prerendering';
 import { enableProdMode } from '@angular/core';
 import { platformNodeDynamic } from 'angular2-universal';
 import { AppModule } from './app1.module';
@@ -7,7 +8,7 @@ import { AppModule } from './app1.module';
 enableProdMode();
 const platform = platformNodeDynamic();
 
-export default function (params: any): Promise<{ html: string, globals?: any }> {
+export default createServerRenderer(params => {
     return new Promise((resolve, reject) => {
         const requestZone = Zone.current.fork({
             name: 'angular-universal request',
@@ -31,4 +32,20 @@ export default function (params: any): Promise<{ html: string, globals?: any }> 
             resolve({ html: html });
         }, reject);
     });
-}
+});
+
+//export default createServerRenderer(params => {
+//    return new Promise((resolve, reject) => {
+//        const result = ` 
+//            <h1>My awesome headline!</h1> 
+//            <p>Node time is: ${ new Date()}</p> 
+//            <p>Request path: ${ params.location.path}</p> 
+//            <p>Absolute URL: ${ params.absoluteUrl}</p>`
+
+//        resolve({
+//            html: result, globals: {
+//                companies: [1, 2, 3]
+//            }
+//        });
+//    });
+//});
