@@ -1,5 +1,10 @@
 ﻿"use strict";
 
+//Angular doesn't work without these modules.
+//Webpack will crash, require it explicitly.
+var rxjs = require('rxjs');
+var zonejs = require('zone.js');
+
 var webpack = require('webpack');
 var path = require('path');
 var nodeExternals = require('webpack-node-externals');
@@ -18,18 +23,18 @@ var clientBundleConfig = {
 
     module: {
         loaders: [
-        {
-            loader: 'ts-loader',
-            exclude: /node_modules/,
-        }
+            {
+                loader: 'ts-loader',
+                exclude: /node_modules/,
+            }
         ]
     },
 
     plugins: [
-    new webpack.DllReferencePlugin({
-        context: '.',
-        manifest: require(path.join(__dirname, 'wwwroot', 'dist', 'angular-manifest.json'))
-    }),
+        new webpack.DllReferencePlugin({
+            context: '.',
+            manifest: require(path.join(__dirname, 'wwwroot', 'dist', 'angular-manifest.json'))
+        }),
     ],
 
     devtool: 'inline-source-map',
@@ -51,10 +56,10 @@ var serverBundleConfig = {
 
     module: {
         loaders: [
-    {
-        loader: 'ts-loader',
-        exclude: /node_modules/,
-    }
+            {
+                loader: 'ts-loader',
+                exclude: /node_modules/,
+            }
         ]
     },
 

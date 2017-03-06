@@ -1,5 +1,10 @@
 ﻿"use strict";
 
+//Angular doesn't work without these modules.
+//Webpack will crash, require it explicitly.
+var rxjs = require('rxjs');
+var zonejs = require('zone.js');
+
 var webpack = require('webpack');
 var path = require('path');
 
@@ -9,16 +14,12 @@ module.exports = {
             '@angular/common',
             '@angular/compiler',
             '@angular/core',
-            //'@angular/http',
+            '@angular/http',
             '@angular/platform-browser',
             '@angular/platform-browser-dynamic',
-            //'@angular/router',
-            //'@angular/platform-server',
+            '@angular/router',
             'angular2-universal',
             'angular2-universal-polyfills',
-            //'es6-shim',
-            //'es6-promise',
-            //'zone.js',
         ]
     },
 
