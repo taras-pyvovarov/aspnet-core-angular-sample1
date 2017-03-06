@@ -5,17 +5,20 @@ var path = require('path');
 
 module.exports = {
     entry: {
-        // create two library bundles, one with jQuery and
-        // another with Angular and related libraries
-        //'jquery': ['jquery'],
         'angular': [
             '@angular/common',
             '@angular/compiler',
             '@angular/core',
+            //'@angular/http',
             '@angular/platform-browser',
             '@angular/platform-browser-dynamic',
+            //'@angular/router',
+            //'@angular/platform-server',
             'angular2-universal',
             'angular2-universal-polyfills',
+            //'es6-shim',
+            //'es6-promise',
+            //'zone.js',
         ]
     },
 

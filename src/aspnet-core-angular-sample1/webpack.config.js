@@ -2,6 +2,7 @@
 
 var webpack = require('webpack');
 var path = require('path');
+var nodeExternals = require('webpack-node-externals');
 
 var clientBundleConfig = {
     entry: { 'app1-main-client': './ClientApp1/app1-main-client.ts' },
@@ -12,73 +13,56 @@ var clientBundleConfig = {
     },
 
     resolve: {
-        // Add `.ts` and `.tsx` as a resolvable extension.
-        extensions: ['.ts', '.tsx', '.js'] // note if using webpack 1 you'd also need a '' in the array as well
+        extensions: ['.ts', '.js']
     },
 
     module: {
         loaders: [
-            {
-                enforce: 'pre',
-                test: /\.js$/,
-                loader: "source-map-loader"
-            },
-            {
-                loader: 'ts-loader',
-                exclude: /node_modules/,
-            }
+        {
+            loader: 'ts-loader',
+            exclude: /node_modules/,
+        }
         ]
     },
 
     plugins: [
-        new webpack.DllReferencePlugin({
-            context: '.',
-            manifest: require(path.join(__dirname, 'wwwroot', 'dist', 'angular-manifest.json'))
-        }),
+    new webpack.DllReferencePlugin({
+        context: '.',
+        manifest: require(path.join(__dirname, 'wwwroot', 'dist', 'angular-manifest.json'))
+    }),
     ],
 
     devtool: 'inline-source-map',
-}
+};
 
-// Configuration for server-side (prerendering) bundle suitable for running in Node
 var serverBundleConfig = {
-    entry: { 'main-server': './ClientApp1/app1-main-server.ts' },
+    entry: {
+        'app1-main-server': './ClientApp1/app1-main-server.ts'
+    },
     output: {
-        //libraryTarget: 'commonjs',
+        libraryTarget: 'commonjs',
         path: path.join(__dirname, 'ClientApp1', 'dist'),
         filename: '[name].js',
     },
 
     resolve: {
-        // Add `.ts` and `.tsx` as a resolvable extension.
-        extensions: ['.ts', '.tsx', '.js'] // note if using webpack 1 you'd also need a '' in the array as well
+        extensions: ['.ts', '.js']
     },
 
     module: {
         loaders: [
-            {
-                enforce: 'pre',
-                test: /\.js$/,
-                loader: "source-map-loader"
-            },
-            {
-                loader: 'ts-loader',
-                exclude: /node_modules/,
-            }
+    {
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+    }
         ]
     },
 
-    //plugins: [
-    //    new webpack.DllReferencePlugin({
-    //        context: '.',
-    //        manifest: require(path.join(__dirname, 'wwwroot', 'dist', 'angular-manifest.json'))
-    //    }),
-    //],
-
-    //target: 'node',
+    target: 'node',
 
     devtool: 'inline-source-map',
-}
 
+    externals: [nodeExternals()]
+};
 
 module.exports = [clientBundleConfig, serverBundleConfig];
