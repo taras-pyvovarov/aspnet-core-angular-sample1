@@ -2,15 +2,14 @@
 import { enableProdMode } from '@angular/core';
 import { platformUniversalDynamic } from 'angular2-universal';
 import { AppModule } from './app1.module';
-//import 'bootstrap';
 
 // Enable either Hot Module Reloading or production mode
-//if (module['hot']) {
-//    module['hot'].accept();
-//    module['hot'].dispose(() => { platform.destroy(); });
-//} else {
-//    enableProdMode();
-//}
+if (module['hot']) {
+    module['hot'].accept();
+    module['hot'].dispose(() => { platform.destroy(); });
+} else {
+    enableProdMode();
+}
 
 // Boot the application, either now or when the DOM content is loaded
 const platform = platformUniversalDynamic();
